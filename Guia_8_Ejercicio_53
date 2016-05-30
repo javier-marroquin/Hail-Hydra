@@ -1,0 +1,68 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Guia_8_Ejercicio_53
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            //Dada hora en formato am/pm imprimirla en formato 24Hrs. Ej. “8​ :​ 00pm”­>”20​ :​ 00”   
+            string hora, periodo = "";
+            string[] reloj;
+            double horas = 0, minutos = 0;
+            int b = 0, j = 0;
+
+            while (j == 0)
+            {
+                do
+                {
+                    if (b > 0)
+                        Console.WriteLine("\t=====Datos erroneos,intentelo nuevamente.=====");
+
+                    Console.WriteLine("===== Introduzca la hora en el siguiente formato 00:00 AM / 00:00 PM ===== \n");
+                    hora = Console.ReadLine().ToUpper();
+                    reloj = hora.Split(' ', ':');
+
+                    if (reloj.Length == 3)
+                    {
+                        horas = Convert.ToDouble(reloj[0]);
+                        minutos = Convert.ToDouble(reloj[1]);
+                        periodo = reloj[2];
+                    }
+                    b++;
+                    Console.Clear(); 
+                }
+                while (!((horas >= 1 && horas <= 12) && (minutos >= 0 && minutos <= 59) && (periodo == "AM" || periodo == "PM"))) ;
+
+                    if (reloj[2] == "PM")
+                {                
+                    horas= horas+ 12;
+                    reloj[0] = Convert.ToString(horas);
+                    if(horas==24)
+                    {
+                        reloj[0]="0";
+                    }
+
+                    Console.WriteLine("\n\t{0} > {1}:{2} Hrs", hora, reloj[0], reloj[1]);
+                }
+                    else if (reloj[2] == "AM")
+                {
+                    Console.WriteLine("\n\t{0} > {1}:{2} Hrs", hora, reloj[0], reloj[1]);
+                }
+
+                Console.WriteLine("Presionone 0 para continuar y 1 para terminar el programa");
+                j = int.Parse(Console.ReadLine());
+                while(!(j==0||j==1))
+                {
+                    Console.WriteLine("Error\nPresionone 0 para continuar y 1 para terminar el programa");
+                    j = int.Parse(Console.ReadLine());
+                }
+            }
+           
+        }
+    }
+}
