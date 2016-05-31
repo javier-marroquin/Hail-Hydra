@@ -16,18 +16,18 @@ namespace Guia_8_Ejercicio_53
             double horas = 0, minutos = 0;
             int b = 0, j = 0;
 
-            while (j == 0)
+            while (j == 0) //Inicio del ciclo bandera, para continuar el programa o terminar el programa
             {
-                do
+                do //Validacion de los datos de entrada
                 {
-                    if (b > 0)
+                    if (b > 0) //Condicion que desplegara un mensaje de error, si despues del primer ciclo do while los datos son erroneos
                         Console.WriteLine("\t=====Datos erroneos,intentelo nuevamente.=====");
-
+                    
                     Console.WriteLine("===== Introduzca la hora en el siguiente formato 00:00 AM / 00:00 PM ===== \n");
                     hora = Console.ReadLine().ToUpper();
                     reloj = hora.Split(' ', ':');
 
-                    if (reloj.Length == 3)
+                    if (reloj.Length == 3)//Condicion que verifica si el vector ingresado tiene el largo necesario para poder trabajar con el
                     {
                         horas = Convert.ToDouble(reloj[0]);
                         minutos = Convert.ToDouble(reloj[1]);
@@ -35,7 +35,7 @@ namespace Guia_8_Ejercicio_53
                     }
                     b++;
                     Console.Clear(); 
-                }
+                } // Fin 2
                 while (!((horas >= 1 && horas <= 12) && (minutos >= 0 && minutos <= 59) && (periodo == "AM" || periodo == "PM"))) ;
 
                     if (reloj[2] == "PM")
