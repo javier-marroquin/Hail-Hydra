@@ -10,7 +10,7 @@ namespace Guia_8_Ejercicio_53
     {
         static void Main(string[] args)
         {
-            //Dada hora en formato am/pm imprimirla en formato 24Hrs. Ej. “8​ :​ 00pm”­>”20​ :​ 00”   
+            //Dada hora en formato am/pm imprimirla en formato 24Hrs. Ej. “8​ :​ 00pm”­>”20​ :​ 00”   
             string hora, periodo = "";
             string[] reloj;
             double horas = 0, minutos = 0;
@@ -18,11 +18,12 @@ namespace Guia_8_Ejercicio_53
 
             while (j == 0) //Inicio del ciclo bandera, para continuar el programa o terminar el programa
             {
+                b = 0;
                 do //Validacion de los datos de entrada
                 {
                     if (b > 0) //Condicion que desplegara un mensaje de error, si despues del primer ciclo do while los datos son erroneos
-                        Console.WriteLine("\t=====Datos erroneos,intentelo nuevamente.=====");
-                    
+                        Console.WriteLine("\t=====Datos erroneos,intentelo nuevamente. (Error n°{0})=====",b);
+
                     Console.WriteLine("===== Introduzca la hora en el siguiente formato 00:00 AM / 00:00 PM ===== \n");
                     hora = Console.ReadLine().ToUpper();
                     reloj = hora.Split(' ', ':');
@@ -34,35 +35,36 @@ namespace Guia_8_Ejercicio_53
                         periodo = reloj[2];
                     }
                     b++;
-                    Console.Clear(); 
+                    Console.Clear();
                 } // Fin 2
-                while (!((horas >= 1 && horas <= 12) && (minutos >= 0 && minutos <= 59) && (periodo == "AM" || periodo == "PM"))) ;
+                while (!((horas >= 1 && horas <= 12) && (minutos >= 0 && minutos <= 59) && (periodo == "AM" || periodo == "PM")));
 
-                    if (reloj[2] == "PM")
-                {                
-                    horas= horas+ 12;
+                if (reloj[2] == "PM")
+                {
+                    horas = horas + 12;
                     reloj[0] = Convert.ToString(horas);
-                    if(horas==24)
+                    if (horas == 24)
                     {
-                        reloj[0]="0";
+                        reloj[0] = "0";
                     }
 
                     Console.WriteLine("\n\t{0} > {1}:{2} Hrs", hora, reloj[0], reloj[1]);
                 }
-                    else if (reloj[2] == "AM")
+                else if (reloj[2] == "AM")
                 {
                     Console.WriteLine("\n\t{0} > {1}:{2} Hrs", hora, reloj[0], reloj[1]);
                 }
 
-                Console.WriteLine("Presionone 0 para continuar y 1 para terminar el programa");
+                Console.WriteLine("\nPresionone 0 para continuar y 1 para terminar el programa");
                 j = int.Parse(Console.ReadLine());
-                while(!(j==0||j==1))
+                while (!(j == 0 || j == 1))
                 {
-                    Console.WriteLine("Error\nPresionone 0 para continuar y 1 para terminar el programa");
+                    Console.WriteLine("Error Presionone 0 para continuar y 1 para terminar el programa");
                     j = int.Parse(Console.ReadLine());
                 }
+                Console.Clear();
             }
-           
+
         }
     }
 }
