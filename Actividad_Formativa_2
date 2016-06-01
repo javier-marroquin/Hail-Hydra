@@ -12,8 +12,9 @@ namespace Actividad_Formativa_2
         const int COL = 3;
        
 
-        public static void PrepararPantalla()
+        public static void PrepararPantalla()//Metodo que que al precionar cualquier tecla limpia la pantalla de texto
         {
+            Console.WriteLine("Presione cualquier tecla");
             Console.ReadKey();
             Console.Clear();
         }
@@ -133,11 +134,12 @@ namespace Actividad_Formativa_2
 
         static void Main(string[] args)
         {
+            //Declaracion de variables
             float[,] min = new float[FIL, COL];
             int i=0, j=0, cont = 1, num, partido;
             string b;
 
-            do
+            do //Ciclo que controla si el el programa debe seguir o terminar
             {
 
 
@@ -149,15 +151,16 @@ namespace Actividad_Formativa_2
                     for (j = 0; j < COL; j++)
                     {
                         Console.Write("\t\tMinutos jugados partidos {0}:", j + 1);
-                        min[i,j] = float.Parse(Console.ReadLine());
-                        while (min[i,j] < 0)
+                        min[i,j] = float.Parse(Console.ReadLine()); //Lecturas de datos
+                        while (min[i,j] < 0)//Ciclo que valida los datos leidos anteriormente
                         {
                             Console.Write("\t\t Debe ser mayor o igual a cero");
                             min[i, j] = float.Parse(Console.ReadLine());
                         }
                     }
-                    cont++;
+                    cont++; //Contador que contiene el numero de jugadores procesados en el programa
                 }
+                //Invocacion de metodos para el procesamiento de los datos
                 PrepararPantalla();
                 Console.Write("\nEscriba el numero del jugador:");
                 num = int.Parse(Console.ReadLine());
@@ -173,10 +176,10 @@ namespace Actividad_Formativa_2
                 ListaMayores(min);
 
 
-                Console.WriteLine("Si desea continuar precione 0, si decea salir presione cualquier tecla");
+                Console.WriteLine("Si desea salir precione 0, si desea continuar precione cuaquier tecla");
                 b = Console.ReadLine();
 
-            } while (b == "0");
+            } while (b != "0");
 
         }
 
