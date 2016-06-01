@@ -1,0 +1,184 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Actividad_Formativa_2
+{
+    class Program
+    {
+        const int FIL = 4;
+        const int COL = 3;
+       
+
+        public static void PrepararPantalla()
+        {
+            Console.ReadKey();
+            Console.Clear();
+        }
+
+        public static void ListaMin(float[,] m, int jugador)
+        {
+            int c;
+            float suma = 0, media = 0;
+            //Console.clear();
+            Console.Write("\nMINUTOS JUGADOS POR JUGADOR");
+
+            for (c = 0; c < COL; c++)
+            {
+                Console.Write("MINUTOS JUGADOS POR PARTIDO {0}", jugador + 1);
+                Console.Write(m[jugador, c]);
+                suma = suma + m[jugador, c];
+
+            }
+            media = suma / 3;
+            if (media == 0)
+                Console.WriteLine("\nJugador: {0} No ha jugado nigun partido\n", jugador + 1);
+            else
+                Console.WriteLine("\nLa media de loes minutos jugados por el jugador {0} es:{1:0.00}\n", jugador + 1, media);
+            return;
+
+        }
+
+        public static void ListarJugador(float[,] m, int p)
+        {
+            int f, cp;
+
+            for (f = 0; f < FIL; f++)
+            {
+                for (cp = 0; cp < COL; cp++)
+                {
+                    if ((cp == p) && (m[f, p] != 0.0))
+                    {
+                        Console.Write("Minutos jugados en partido {0}", p + 1);
+                        Console.Write(" por el jugado {0} son: ", f + 1);
+                        Console.Write(" {0} minutos\n", m[f, p]);
+                    }
+                }
+            }
+            return;
+
+        }
+
+        public static void ListaCero(float[,]m)
+        {
+            int deportista, juego;
+            float[] SumaCero = { 0, 0, 0, 0 };
+            for (deportista = 0; deportista < FIL; deportista++) SumaCero[deportista]=0;
+            for(deportista=0; deportista<FIL; deportista++)
+            {
+                for(juego=0;juego<COL;juego++)
+                {
+                    if (m[deportista, juego] != 0.0)
+                        SumaCero[deportista] = SumaCero[deportista] + m[deportista, juego];
+                }
+
+            }
+            for(deportista=0;deportista<FIL;deportista++)
+            {
+                if (SumaCero[deportista] == 0.0)
+                    Console.WriteLine("\nEl jugador {0} No ha jugado nigun partido\n", deportista + 1);
+            }
+            return;
+        }
+        public static void Orden(float[] mT)
+        {
+            int c = 1, indice, y;
+            float x, mayor;
+            int[] JugaronMas = { 0, 0, 0, 0 };
+            for (indice = 0; indice < FIL; indice++) JugaronMas[indice] = indice + 1;
+            while(c!=0)
+            {
+                c = 0;
+                for(indice=0;indice<FIL-2;indice++)
+                    if(mT[indice]>mT[indice+1])
+                    {
+                        x = mT[indice];
+                        y = JugaronMas[indice];
+                        mT[indice] = mT[indice + 1];
+                        JugaronMas[indice] = JugaronMas[indice + 1];
+                        mT[indice + 1] = x;
+                        JugaronMas[indice + 1] = y;
+                        c = 1;
+                    }
+            }
+            Console.WriteLine("\nLista de minutos Totales ordenada\n");
+            for (indice = 0; indice <= FIL - 1; indice++)
+                Console.WriteLine("Jugador {0}\tMinutos totales jugados {1}\n", JugaronMas[indice], mT[indice]);
+            PrepararPantalla();
+            mayor = mT[indice - 1];
+            Console.WriteLine("Listado de jugadores que han jugado la mayor cantidad de minutos: \n");
+            for(indice=0; indice<FIL;indice++)
+            {
+                if (mT[indice] == mayor)
+                    Console.WriteLine("Jugador:{0} \n", JugaronMas[indice]);
+            }
+            Console.ReadKey();
+            return;
+        }
+
+        public static void ListaMayores(float[,]m)
+        {
+            int dep, jue;
+            float[] total = { 0, 0, 0, 0 };
+            for (dep =0; dep < FIL; dep++) total[dep] = 0;
+            for(dep=0; dep<FIL;dep++)
+            {
+                for (jue = 0; jue < COL; jue++) total[dep] = m[dep, jue];
+            }
+            Orden(total);
+            return;
+        }
+
+        static void Main(string[] args)
+        {
+            float[,] min = new float[FIL, COL];
+            int i=0, j=0, cont = 1, num, partido;
+            string b;
+
+            do
+            {
+
+
+                Console.Clear();
+                Console.Write("MINUTOS JUGADOS POR JUGADOR:\n");
+                for (i = 0; i < FIL; i++)
+                {
+                    Console.WriteLine("\nJugador {0}:", cont);
+                    for (j = 0; j < COL; j++)
+                    {
+                        Console.Write("\t\tMinutos jugados partidos {0}:", j + 1);
+                        min[i,j] = float.Parse(Console.ReadLine());
+                        while (min[i,j] < 0)
+                        {
+                            Console.Write("\t\t Debe ser mayor o igual a cero");
+                            min[i, j] = float.Parse(Console.ReadLine());
+                        }
+                    }
+                    cont++;
+                }
+                PrepararPantalla();
+                Console.Write("\nEscriba el numero del jugador:");
+                num = int.Parse(Console.ReadLine());
+                ListaMin(min, num - 1);
+                PrepararPantalla();
+                Console.Write("\nEscriba el numero del partido: ");
+                partido = int.Parse(Console.ReadLine());
+                ListarJugador(min, partido - 1);
+                PrepararPantalla();
+                Console.WriteLine("Jugadores con total de minutos igua a cero:\n");
+                ListaCero(min);
+                PrepararPantalla();
+                ListaMayores(min);
+
+
+                Console.WriteLine("Si desea continuar precione 0, si decea salir presione cualquier tecla");
+                b = Console.ReadLine();
+
+            } while (b == "0");
+
+        }
+
+    }
+}
