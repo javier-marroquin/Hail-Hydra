@@ -1,0 +1,81 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Guia_8_Ejercicio_20
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            /*Dada una cadena inicializada con un texto cualquiera  
+            cree e imprima una cadena  con todas las letras mayúsculas, 
+            los puntos, comas y puntos y comas que encuentre en la cadena. 
+            Ej. “Amaya Buendia, Maria Teresa; estudia Sistemas.”  imprime --> “AB,MT;S.” */
+            string characters ="José Ernesto Sorto González.";
+            char[] cadena;
+            cadena =Program.separarCaracteres(characters);
+            cadena = orden(cadena);
+            for (int i=0;i!=cadena.Length;i++)
+            {
+                Console.Write(cadena[i]);
+            }
+            Console.ReadKey();
+        }
+
+        public static char[] separarCaracteres(string palabras)
+        {
+            char[] guarda;
+            guarda = new char[palabras.Length];
+            int aumenta = 0;
+            while (palabras.Length != aumenta)
+            {
+                string salida = palabras.Substring(aumenta, 1);
+                guarda[aumenta] = Convert.ToChar(salida);
+                aumenta++;
+            }
+            return guarda;
+        }
+        public static char[] orden(char[] mensaje)
+        {
+            char[] ordenados;
+            ordenados = new char[Lenggth(mensaje)];
+            int j = 0;
+             for(int i=0;i!=mensaje.Length;i++)
+            {
+                if (((mensaje[i] >= '0' && mensaje[i] <= '9')))
+                { }
+                else if ((mensaje[i] >= 'a' && mensaje[i] <= 'z'))
+                { }
+                else if ((mensaje[i] >= 'A' && mensaje[i] <= 'Z'))
+                {ordenados[j] = mensaje[i]; j++;}
+                else
+                { ordenados[j] = mensaje[i]; j++; }
+            }
+            
+            return ordenados;
+              
+            }
+        public static int Lenggth(char[] mensaje)
+        {
+            int j = 0;
+            for (int i = 0; i != mensaje.Length; i++)
+            {
+                if (((mensaje[i] >= '0' && mensaje[i] <= '9')))
+                { }
+                else if ((mensaje[i] >= 'a' && mensaje[i] <= 'z'))
+                { }
+                else if ((mensaje[i] >= 'A' && mensaje[i] <= 'Z'))
+                {j++; }
+                else
+                {j++; }
+            }
+            return j;
+        }
+           
+        }
+        
+        
+    }
