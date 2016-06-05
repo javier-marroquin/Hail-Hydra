@@ -1,0 +1,51 @@
+//VALIDACIONES DE DATOS//
+
+        public static int validacionint()
+        {
+            int a=0,i=0;
+            bool b;                        
+            do
+            {
+                if (i > 0)
+                    Console.WriteLine("================= Error de datos introducidos.===N°{0}===========\n", i);
+                Console.WriteLine("Ingrese un numero int positivo");
+                b = int.TryParse(Console.ReadLine(), out a);
+                i++;
+                Console.Clear();                
+            } while (!(b && a >= 0));
+            return a;
+        }
+
+        public static double validaciondouble()
+        {
+            double a;
+            int i = 0;
+            bool b;
+            do
+            {
+                if (i > 0)
+                    Console.WriteLine("================= Error de datos introducidos.===N°{0}===========\n", i);
+                Console.WriteLine("Ingrese un numero double positivo");
+                b = double.TryParse(Console.ReadLine(), out a);
+                i++;
+                Console.Clear();
+            } while (!(b && a >= 0));
+            return a;
+        }
+
+        public static float validacionfloat()
+        {
+            float a;
+            int i = 0;
+            bool b;
+            do
+            {
+                if (i > 0)
+                    Console.WriteLine("================= Error de datos introducidos.===N°{0}===========\n", i);
+                Console.WriteLine("Ingrese un numero float positivo");
+                b = float.TryParse(Console.ReadLine(), out a);
+                i++;
+                Console.Clear();
+            } while (!(b && a >= 0));
+            return a;
+        }
