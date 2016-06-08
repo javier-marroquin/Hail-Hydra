@@ -1,0 +1,99 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Guia_10_Ejercicio_4
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            /*Dadas las edades y género de 10 personas calcule  e imprima edad promedio
+            y la cantidad de personas del género masculino que están arriba de la  edad promedio.*/
+
+            int[] edades = new int[3];
+            string[] genero=new string[edades.Length];
+            double edad=0,prom=0;
+            int b=0;          
+
+            for(int i=0;i !=edades.Length;i++)
+            {
+                Console.WriteLine("\tIngrese los datos de la persona: N°{0}\n",i+1);
+                edades[i] = validar.validacionint();
+                genero[i] = validar.genero();
+               
+                edad = edad + edades[i];
+                prom = edad /edades.Length;
+                Console.Clear();
+            }            
+           for(int j=0;j !=edades.Length;j++)
+            {
+                if(genero[j]=="M")
+                {
+                    if(edades[j]>prom)
+                    {
+                        b++;
+                    }
+                }
+            }
+            Console.WriteLine("Edad promedio es {0:##.##} \nLas personas que estan arriba de la edad promedio son {1}",prom,b);
+
+            Console.ReadKey();
+        }
+    }
+}
+
+
+
+*****************************************Crear clase con el nombre de "validar"************************************
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Guia_10_Ejercicio_4
+{
+    class validar
+    {
+
+        public static int validacionint()
+        {
+            int a = 0, i = 0;
+            bool b;
+            do
+            {
+                if (i > 0)
+                    Console.WriteLine("================= Error de datos introducidos.===N°{0}===========\n", i);
+                Console.WriteLine("Ingrese su edad");
+                b = int.TryParse(Console.ReadLine(), out a);
+                i++;
+                
+            } while (!(b && a >= 0));
+            return a;
+        }
+
+        public static string genero()
+        {
+            int i = 0;
+            string gen;
+            do
+            {
+                if (i > 0)
+                    Console.WriteLine("================= Error de datos introducidos.===N°{0}===========\n", i);
+                Console.WriteLine("Ingrese el genero de la persona\n\tMASCULINO=M\tFEMENINO=F");
+                gen = Console.ReadLine().ToUpper();
+                i++;
+
+            } while (!(gen == "F"||gen=="M"|| gen=="MASCULINO"||gen=="FEMENINO"));
+            return gen;
+
+        }
+
+
+
+    }
+}
