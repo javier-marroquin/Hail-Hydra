@@ -1,0 +1,69 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Guia_10_Ejercicio_10
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            /*El Centro meteorológico Nacional necesita una solución que le permita registrar la magnitud 
+            de los sismos que acontecen diariamente, cada vez que hay un sismo debe de registrarse la magnitud.
+            Al final del día se desea imprimir la magnitud promedio de sismos menores, la cantidad y porcentaje
+            de sismos menores respecto del total de sismos registrados.*/
+
+            
+            string b;
+            int i=0;
+            double suma=0, prome,menor;
+            double[] magnitud= new double[100]; ;
+
+            do
+            {
+                
+                Console.WriteLine("========Ingrese la magnitud del sismo N°{0}. ========\n", i+1);
+                magnitud[i] = validaciondouble();
+                
+                suma =suma+ magnitud[i];
+                
+                i++;
+                Console.WriteLine("*****Si desea continuar presione Enter, desea salir presione 0. *****");
+                b = Console.ReadLine();
+                Console.Clear();
+            } while (b != "0");
+
+            prome = suma / i;
+
+
+            menor = magnitud[0];
+            for(int j=0;j!= i;j++)
+            {
+                if (menor > magnitud[j])
+                    menor = magnitud[j];
+            }
+
+            Console.WriteLine("Promedio es {0}\n El sismo menor fue {1}", prome,menor);
+            Console.ReadKey();
+        }
+
+        public static double validaciondouble()
+        {
+            double a;
+            int i = 0;
+            bool b;
+            do
+            {
+                if (i > 0)
+                    Console.WriteLine("================= Error de datos introducidos.===N°{0}===========\n", i);
+                Console.WriteLine("Ingrese un numero positivo");
+                b = double.TryParse(Console.ReadLine(), out a);
+                i++;
+                Console.Clear();
+            } while (!(b && a >= 0));
+            return a;
+        }
+    }
+}
