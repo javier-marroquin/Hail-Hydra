@@ -1,0 +1,103 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApplication5
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string[] nombres = new string[100];
+            int[] carreras = new int[nombres.Length];
+            string bandera;
+            int i = 0;
+            do
+            {
+                Console.WriteLine("=================================================");
+                Console.Write("\nIngrese el Nombre del estudiante: ");
+                nombres[i] = Console.ReadLine();
+                Console.WriteLine("\nCarrera del estudiante:\n\n1:Arquitectura \n2:Ing. Industrial \n3:Ing. Civil \n4:Ing. Quimica \n5:Ing. de Alimentos \n6:Ing. Electrica \n7:Ing. Mecanica \n8:Ing. de Sistemas Informaticos\n");
+                int o = 0;
+                do
+                {
+                    if (o > 0)
+                    {
+                        Console.WriteLine("===========Error.===========\n");
+                        Console.WriteLine("Ingrese nuevamente el dato");
+                    }
+                    carreras[i] = int.Parse(Console.ReadLine());
+                    o++;
+                } while (!(carreras[i] > 0 && carreras[i] <= 8));
+
+
+                Console.WriteLine("\nTiene otro estudiante que procesar precione ''Enter''\nCaso contrario precione ''F''");
+                bandera = Console.ReadLine().ToUpper();
+                Console.Clear();
+                i++;
+            } while (bandera != "F");
+
+
+
+
+            for (int j = 0; j != i; j++)
+            {
+                
+                for (int k = 0; k != 8; k++)
+            {
+                    if(k==0)
+                    {
+                        Console.WriteLine("Nombre de la carrera: {0}", Carreras(carreras[j]));
+                        Console.WriteLine("Estudiantes inscritos\n");
+                    }
+                if (Carreras(carreras[k]) == Carreras(carreras[j]))
+                {
+     
+                    Console.WriteLine("Nombre: {0}\n", nombres[k]);
+                }
+
+
+            }
+        }
+
+
+            Console.ReadKey();                                               
+        }
+
+
+        public static string Carreras(int num)
+        {
+            string carrera = null;                        
+            switch (num)
+            {
+                case 1:
+                    carrera = "Arquitectura";
+                    break;
+                case 2:
+                    carrera = "Ing. Industrial";
+                    break;
+                case 3:
+                    carrera = "Ing. Civil";
+                    break;
+                case 4:
+                    carrera = "Ing. Quimica";
+                    break;
+                case 5:
+                    carrera = "Ing. de Alimentos";
+                    break;
+                case 6:
+                    carrera = "Ing. Electrica";
+                    break;
+                case 7:
+                    carrera = "Ing. Mecanica";
+                    break;
+                case 8:
+                    carrera = "Ing. de Sistemas Informaticos";
+                    break;
+            }
+            return carrera;
+        }       
+    }
+}
