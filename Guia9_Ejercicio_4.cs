@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Guia4_Ejercicio_4
+namespace Guia9_Ejercicio_4
 {
     class Program
     {   /*Dados los carné de las personas que llevan IAI-115, se pide que 
