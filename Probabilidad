@@ -1,0 +1,11 @@
+Items <- c("dia","dia","dia","dia","dia","dia","dia","dia","dia","dia","dia","dia","dia","dia","dia","dia","dia","dia","dia","dia","tar","tar","tar","tar","tar","tar","tar","tar","tar","tar","tar","tar","tar","tar","tar","noch","noch","noch","noch","noch","noch","noch","noch","noch","noch")
+## esto crea la población
+
+simulacion <- function (r){
+  acumulado <- rep(0,r)
+  for(i in 1:r){
+    acumulado[i] <- sum(sample(Items,6,replace=FALSE)!="dia")
+  }
+  return(table(acumulado)/r)
+}
+simulacion(90000)
